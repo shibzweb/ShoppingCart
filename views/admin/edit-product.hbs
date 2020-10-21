@@ -1,0 +1,51 @@
+
+
+<div class="container mt-5">
+  <h2 class="text-center">Edit-Products</h2>
+  <form class="form-horizontal" enctype="multipart/form-data" method="post" action="/admin/edit-product/{{product._id}}">
+    <div class="form-group">
+      <label class="control-label col-sm-2" >Name</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" value="{{product.Name}}"placeholder="Enter Name" name="Name">
+      </div>
+    </div>
+        <div class="form-group">
+      <label class="control-label col-sm-2" >Category</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" value="{{product.Category}}" placeholder="Enter Category" name="Category">
+      </div>
+    </div>
+    
+        <div class="form-group">
+      <label class="control-label col-sm-2" >Price</label>
+      <div class="col-sm-10">
+        <input type="number" class="form-control" value="{{product.Price}}" placeholder="Enter Price" name="Price">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2" >Description</label>
+      <div class="col-sm-10">          
+        <input type="text" class="form-control" value="{{product.Description}}" placeholder="Enter Description" name="Description">
+      </div>
+    </div>
+
+      <div class="form-group">
+      <label class="control-label col-sm-2" >Image</label>  
+      <img src="/product-images/{{product._id}}.jpg" alt="" id="imgview" style="width:100px; height:auto">      
+        <input type="file" name="Image" onchange="viewImage(event)" class="form-control"  >    
+      </div>
+
+       
+ 
+      <div class="col-sm-offset-2 col-sm-10">
+        <button type="submit" class="btn btn-succes">Submit</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<script>
+    function viewImage(event){
+        document.getElementById("imgview").src=URL.createObjectURL(event.target.files[0])
+    }
+</script>
