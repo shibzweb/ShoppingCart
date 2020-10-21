@@ -74,21 +74,23 @@ module.exports = {
                     $match: { user: objectId(userId) }
                 },
                 {
-                    from: collection.PRODUCT_COLLECTION,
-                    let: { prodList: '$products' },
-                    pipeline: [
-                        {
-                            $match: {
-                                $expr: {
-                                    $in:['$_id',"$$prodList"]
-                                
+                    $lookup:{
+                        from: collection.PRODUCT_COLLECTION,
+                        let: { prodList: '$products' },
+                        pipeline: [
+                            {
+                                $match: {
+                                    $expr: {
+                                        $in:['$_id',"$$prodList"]
+                                    
+                                    }
                                 }
+    
                             }
-
-                        }
+                 
                     ],
                     as: 'cartItems'
-
+                }
                 }
             ]).toArray(
                 resolve(cartItems)
