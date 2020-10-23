@@ -12,6 +12,7 @@ const varifylogin=(req,res,next)=>{
     res.redirect('/login')
   }
 }
+
 /* GET home page. */
 router.get('/',async function(req, res, next) {
   let user=req.session.user
@@ -74,6 +75,12 @@ router.get('/add-to-cart/:id',(req,res)=>{
     res.json({status:true})
   })
 })
+router.post('/change-product-quantity',(req,res,next)=>{
+  userHelpers.changeProductQuantity(req.body).then(()=>{
+    console.log(req.body)
+  })
 
+
+})
 
 module.exports = router;
